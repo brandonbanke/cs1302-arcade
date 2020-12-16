@@ -13,7 +13,7 @@ public class ArcadeDriver {
      */
     public static void main(String[] args) {
         try {
-            Application.launch(TetrisApp.class, args);
+            Application.launch(ArcadeApp.class, args);
         } catch (UnsupportedOperationException e) {
             System.out.println(e);
             System.err.println("If this is a DISPLAY problem, then your X server connection");

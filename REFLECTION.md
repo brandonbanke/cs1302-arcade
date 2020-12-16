@@ -9,6 +9,12 @@ Here is a sample entry (delete this line; also: feel free to copy/paste/modify):
 
 ## Deadline 1 - TUE 2020-12-01 (Dec 01)
 
-1. replace with your text
-2. replace with your text
-3. replace with your text
+I did centipede and ended up throwing away the project.
+
+## Deadline 2 - TUE 2020-12-08 (Dec 08)
+
+I did centipede	and ended up throwing away the project.
+
+## Deadline 3 - TUE 2020-12-16 (Dec 16)
+
+Started from scatch and made a functioning tetris game with a title scren.

@@ -11,6 +11,10 @@ import javafx.scene.shape.Shape;
 public class TetrisPiece {
 
     private static Shape [][] grid = new Shape [2][4];
+
+    /**
+     * Enum to find block shape.
+     */
     enum BlockShape {
         ZBLOCK,
         SBLOCK,
@@ -21,7 +25,9 @@ public class TetrisPiece {
         SQUARE,
         SINGLEBLOCK;
     }
+
     private static BlockShape blockShape;
+
     /**
      * Method to create the block in an single block formation.
      *
@@ -138,7 +144,7 @@ public class TetrisPiece {
      * @return Shape[][] representing the physical block 
      *
      */
-     public static Shape [][] spawnS () {
+    public static Shape [][] spawnS () {
         Rectangle nullShape = new Rectangle (20, 20, Color.TRANSPARENT);
         Rectangle r = new Rectangle (20,20);
         r.setFill(Color.GREEN);
@@ -198,7 +204,7 @@ public class TetrisPiece {
     } //spawnT
 
     /**
-     * Method to return the shape of the current falling block in the TetrisApp class
+     * Method to return the shape of the current falling block in the TetrisApp class.
      *
      * @return BlockShape the enum value of the current block object
      *
@@ -207,6 +213,11 @@ public class TetrisPiece {
         return blockShape;
     } // getShape
 
+    /**
+     * Method to rotate the shape.
+     *
+     * @return Shape[][] representing the new block introduced into the scene.
+     */
     public static Shape[][] rotateShape() {
         Shape[][] rotationShape = new Shape[4][2];
         for (int i = 0; i < 2; i++) {
@@ -220,7 +231,7 @@ public class TetrisPiece {
     /**
      * Method that generates a random value for a block and returns a formation for the new piece.
      *
-     * @ return Shape[][] representing the new block introduced into the scene.
+     * @return Shape[][] representing the new block introduced into the scene.
      *
      */
     public static Shape [][] spawnBlock () {

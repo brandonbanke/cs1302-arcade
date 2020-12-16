@@ -55,6 +55,9 @@ public class TetrisApp extends Application {
     private int rotationNum;
     private int rotCount;
 
+    /**
+     * Method to set up game.
+     */
     public void doPreparations () {
         for (int i = 0; i < 24; i++) {
             RowConstraints row = new RowConstraints(20);
@@ -85,6 +88,9 @@ public class TetrisApp extends Application {
     } 
 
 
+    /**
+     * Method that causes block to fall.
+     */
     private void blockDown() {
         for (int i = 22; i >= 0; i--) {
             for (int n = 11; n >= 0; n--) {
@@ -107,9 +113,9 @@ public class TetrisApp extends Application {
     
     
     /**
-     * This is the method that causes the block to fall.
+     * This is the method that causes block to fall on a timeline.
      */
-        public void moveBlockDown () {
+    public void moveBlockDown () {
         Platform.runLater(() -> {
             EventHandler<ActionEvent> handler = event -> {
                 blockDown();
@@ -122,6 +128,12 @@ public class TetrisApp extends Application {
         });
     } //moveBlockDown
 
+
+    /**
+     * Method to determine if a block should stop moving.
+     *
+     * @return boolean true if is at bottom, false if not
+     */
     public boolean isAtBottom() {
         for (int i = 0; i < 24; i++) {
             for (int n = 0; n < 12; n++) {
@@ -139,7 +151,7 @@ public class TetrisApp extends Application {
     } // isAtBottom
     
     /**
-     * Method used to reset the boolean array of currentBlock for a new Shape.
+     * Method used to reset the boolean array of currentBlock.
      */
     public void resetFalling () {
         for (int i = 0; i < 24; i++) {
@@ -150,7 +162,7 @@ public class TetrisApp extends Application {
     } //printFalling
 
     /**
-     * This method creates a new block at the top of the grid.
+     * This method creates a new block..
      */
     public void spawnNew () {
         block = new Shape [2][4];
@@ -182,7 +194,7 @@ public class TetrisApp extends Application {
     } //spawnNew
 
     /**
-     * Creates the next round by placing the block permanently and creating a new block.
+     * Creates the next round by securing block at bottom and creating new one.
      */
     public void newRound () {
         deleteFilled();
@@ -213,7 +225,7 @@ public class TetrisApp extends Application {
     
     /**
      * Method to check if the game is over or not.
-     *@return boolean
+     * @return boolean
      */
     public boolean isGameOver () {
         for (int i = 0; i < 12; i++) {
@@ -281,6 +293,11 @@ public class TetrisApp extends Application {
         } //for
     } //moveRight
 
+    /**
+     * Method to determine if shape is able to be rotated.
+     *
+     * @return boolean true if can rotate, false if not
+     */
     public boolean canRotate() {
         for (int i = 0; i < 24; i++) {
             for (int n = 0; n < 12; n++) {
@@ -302,6 +319,9 @@ public class TetrisApp extends Application {
         return true;
     } // canRotate
 
+    /**
+     * Method to rotate line block.
+     */
     public void rotateLine() {
         rotCount = 0;
         boolean hasDone0 = false;
@@ -339,6 +359,9 @@ public class TetrisApp extends Application {
         }
     } // rotateLine
 
+    /**
+     * Method to rotate Z block. 
+     */
     public void rotateZ() {
         rotCount = 0;
         boolean hasDone0 = false;
@@ -361,7 +384,7 @@ public class TetrisApp extends Application {
                         hasDone1 = true;
                         rotCount++;
                     } else if (rotCount == 2 && !hasDone2) {
-                        boardAr[i][n- 1].setFill(Color.RED);
+                        boardAr[i][n - 1].setFill(Color.RED);
                         currentBlock[i][n - 1] = true;
                         hasDone2 = true;
                         rotCount++;
@@ -376,6 +399,9 @@ public class TetrisApp extends Application {
         }
     }
 
+    /**
+     * Method to rotate s block.
+     */
     public void rotateS() {
         rotCount = 0;
         boolean hasDone0 = false;
@@ -412,7 +438,10 @@ public class TetrisApp extends Application {
             }
         }
     }
-    
+
+    /**
+     * Method to rotate L block.
+     */
     public void rotateL() {
         rotCount = 0;
         boolean hasDone0 = false;
@@ -449,7 +478,10 @@ public class TetrisApp extends Application {
             }
         }
     }
-    
+
+    /**
+     * Method to rotate Reverse L block. 
+     */
     public void rotateRevL() {
         rotCount = 0;
         boolean hasDone0 = false;
@@ -488,7 +520,9 @@ public class TetrisApp extends Application {
     }
 
 
-    
+    /**
+     * Method to rotate T block.
+     */
     public void rotateT() {
         rotCount = 0;
         boolean hasDone0 = false;
@@ -510,7 +544,9 @@ public class TetrisApp extends Application {
     }
 
     
-    
+    /**
+     * Method to find block type and rotate it.
+     */
     public void rotateBlock() {
         TetrisPiece.BlockShape blockShape = TetrisPiece.getShape();
         if (blockShape == TetrisPiece.BlockShape.SQUARE
@@ -546,8 +582,8 @@ public class TetrisApp extends Application {
     
     /**
      * Return a key event handler that moves to the rectangle to the left
-     * or the right depending on what key event is generated by the associated
-     * node.
+     * or the right or down to go faster or space to rotate.
+     *
      * @return the key event handler
      */
     private EventHandler <? super KeyEvent> createKeyHandler () {
@@ -615,7 +651,9 @@ public class TetrisApp extends Application {
         moveBlockDown();
     } //play
 
-    /** {@inheritDoc} */
+    /** 
+     * {@inheritDoc}
+     */
     @Override
     public void start(Stage stage) {
         pane.setOnKeyPressed(createKeyHandler()); // left-right key presses move the rectangle
